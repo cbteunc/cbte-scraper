@@ -15,9 +15,9 @@ def obtener_precios_pasajes_plataforma10(driver, url, lugar):
     try:
         # Esperar hasta que las tarjetas estén presentes
         WebDriverWait(driver, 15).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".searchResultCard_card__5Avpr"))
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".SearchResultCardV2_card-v2-container__QjROe"))
         )
-        cards = driver.find_elements(By.CSS_SELECTOR, ".searchResultCard_card__5Avpr")
+        cards = driver.find_elements(By.CSS_SELECTOR, ".SearchResultCardV2_card-v2-container__QjROe")
     except Exception as e:
         logger.error(f"No se encontraron tarjetas: {e}")
         return []
@@ -26,25 +26,24 @@ def obtener_precios_pasajes_plataforma10(driver, url, lugar):
         
         try:
             # Empresa (alt del logo dentro del contenedor de empresa)
-            img = card.find_element(By.CSS_SELECTOR, 'div[class*="content-company"] img')
+            img = card.find_element(By.CSS_SELECTOR, "figure.SearchResultCardV2_trip-image-container__W3JsI img")
             company_name = img.get_attribute("alt").strip()
         except Exception as e:
-            logger.critical(f"Error en una empresa: {e}")
+            try:
+                # Algunas empresas no tienen imagen, si no solo texto
+                span = card.find_element(By.CSS_SELECTOR, "span.SearchResultCardV2_company-name-fallback__Kbcc2")
+                company_name = span.text.strip()
+            except Exception as e:
+                logger.critical(f"Error en una empresa: {e}")
             
         try:
-            price_element = card.find_element(By.CSS_SELECTOR, ".searchResultCard_card__price__OPhFJ")
+            price_element = card.find_element(By.CSS_SELECTOR, ".SearchResultCardV2_trip-price-value__iKYIv")
             price = price_element.text.strip()
         except Exception as e:
             logger.critical(f"Error en un precio: {e}")
             
         try:
-            price_element = card.find_element(By.CSS_SELECTOR, ".searchResultCard_card__price__OPhFJ")
-            price = price_element.text.strip()
-        except Exception as e:
-            logger.critical(f"Error en un precio: {e}")        
-            
-        try:
-            seat_type_element = card.find_element(By.CSS_SELECTOR, ".searchResultCard_quality__IDeMt")
+            seat_type_element = card.find_element(By.CSS_SELECTOR, ".SearchResultCardV2_seat-type-text__I_hBZ")
             seat_type = seat_type_element.text.strip()
         except Exception as e:
             logger.warning(f"No se pudo obtener tipo de asiento: {e}")
