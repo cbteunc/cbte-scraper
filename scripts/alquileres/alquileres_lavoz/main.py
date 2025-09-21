@@ -16,22 +16,14 @@ def main():
         logger.info(f"Scrapeando los alquileres en {base_url}")
     
         try:
-            driver = crear_driver()
-            logger.info("Driver creado.")
-            logger.info("Iniciando el scraping...")
-            deptos = scrapear_pagina(driver, base_url)
+            deptos = scrapear_pagina(base_url)
             logger.info(f"Se obtuvieron {len(deptos)} departamentos.")
 
             logger.info("Guardando resultados en Excel...")
             guardar_en_excel(deptos, base_url)
-            logger.info("¡Todas los deptos se escrapearon y guardaron correctamente!")
-
+            logger.info("¡Todas los deptos se scrapearon y guardaron correctamente!")
         except Exception as e:
             logger.error(f"Error al procesar {base_url}: {e}")
-
-        finally:
-            driver.quit()
-            logger.info("Driver cerrado.")
 
     logger.info("===========SCRAPING DE LAVOZ FINALIZADO===========\n")
 
