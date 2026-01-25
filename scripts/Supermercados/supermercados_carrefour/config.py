@@ -1,7 +1,8 @@
 # Definir la URL base y las 50 categorías
 base_url = "https://www.carrefour.com.ar/"
 
-categorias_deseadas = ["almacen/sal-aderezos-y-saborizadores/sal",
+categorias_deseadas = [
+                        "almacen/sal-aderezos-y-saborizadores/sal",
                         "almacen/aceites-y-vinagres/vinagres-acetos-y-limon",
                         "almacen/enlatados-y-conservas/conservas-y-salsas-de-tomate",
                         "almacen/enlatados-y-conservas/conservas-de-legumbres-y-vegetales",
@@ -12,7 +13,7 @@ categorias_deseadas = ["almacen/sal-aderezos-y-saborizadores/sal",
                         "almacen/harinas/polentas",
                         "almacen/aceites-y-vinagres/aceites-comunes",
                         "lacteos-y-productos-frescos/dulce-de-membrillo-y-otros-dulces",
-                        "Lacteos-y-productos-frescos/Dulce-de-leche",
+                        "desayuno-y-merienda/mermeladas-y-otros-dulces/dulce-de-leche",
                         "lacteos-y-productos-frescos/huevos",
                         "Lacteos-y-productos-frescos/Leches",
                         "Lacteos-y-productos-frescos/Quesos",
@@ -36,21 +37,22 @@ categorias_deseadas = ["almacen/sal-aderezos-y-saborizadores/sal",
                         "Limpieza/Articulos-de-limpieza/Esponjas",
                         "limpieza/limpieza-de-cocina/limpiadores-cremosos",
                         "Limpieza/Papeles-higienicos",
-                        "Perfumeria/Proteccion-femenina/Toallitas-femeninas",
-                        "Perfumeria/Jabones/Jabones-en-barra",
-                        "Perfumeria/Cuidado-dental/Pasta-dental",
-                        "Perfumeria/Cuidado-del-cabello/Shampoos",
-                        "Perfumeria/Cuidado-corporal/Afeitado",
-                        "Perfumeria/Cuidado-del-cabello/Acondicionadores",
-                        "Perfumeria/Antitranspirantes-y-desodorantes/En-aerosol",
-                        "Perfumeria/Cuidado-dental/Cepillos-de-dientes",
+                        "perfumeria-y-farmacia/Proteccion-femenina/Toallitas-femeninas",
+                        "perfumeria-y-farmacia/Jabones/Jabones-en-barra",
+                        "perfumeria-y-farmacia/Cuidado-dental/Pasta-dental",
+                        "perfumeria-y-farmacia/Cuidado-del-cabello/Shampoos",
+                        "perfumeria-y-farmacia/Cuidado-corporal/Afeitado",
+                        "perfumeria-y-farmacia/Cuidado-del-cabello/Acondicionadores",
+                        "perfumeria-y-farmacia/Antitranspirantes-y-desodorantes/En-aerosol",
+                        "perfumeria-y-farmacia/Cuidado-dental/Cepillos-de-dientes",
                         "Carnes-y-pescados/Carne-vacuna",
                         "Carnes-y-pescados/Pollo-y-granja",
                         "Frutas-y-verduras/Verduras",
                         "Frutas-y-verduras/Frutas",
-                        "bazar-y-textil/libreria/resmas-y-articulos-de-oficina",
-                        "Bazar-y-textil/Libreria/Lapiceras-y-lapices",
-                        "bazar-y-textil/libreria/accesorios-de-libreria"]
+                        "jugueteria-y-libreria/libreria/resmas-y-accesorios-de-oficina",
+                        "jugueteria-y-libreria/libreria/lapices-lapiceras-y-marcadores",
+                        "jugueteria-y-libreria/libreria/accesorios-de-libreria"
+                        ]
 
 # Obtener los links de las categorías
 links_categorias = [f"{base_url}{cat}" for cat in categorias_deseadas]
