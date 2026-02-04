@@ -63,7 +63,7 @@ def obtener_productos_y_precios_vea(driver, max_reintentos=5, espera_entre_inten
 
                 try:
                     precio_kg_lt_elemento = producto.find_element(
-                        By.CSS_SELECTOR, "div.vtex-custom-unit-price"
+                        By.CSS_SELECTOR, "span.vtex-custom-unit-price"
                     )
                     precio_kg_lt = precio_kg_lt_elemento.text.strip()
                 except:
