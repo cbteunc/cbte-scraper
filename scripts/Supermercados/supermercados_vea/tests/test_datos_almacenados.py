@@ -1,9 +1,10 @@
 import pytest
 import pandas as pd
 from pathlib import Path
+import re
 import pytest_check as check
 from ..config import categorias_deseadas
-
+from ..utils.limpieza import limpiar_url
 
 # Datos y funciones auxiliares
 CANTIDAD_CATEGORIAS_ESPERADAS = 50
@@ -57,11 +58,16 @@ def test_categorias_scrapeadas(categoria):
     has_file = False
 
     for file in excel_files:        
-        # Esta conversión la hace automaticamente guardar_excel
-        converted_name = categoria.replace("/", "_").replace("&", "_").replace("?", "_")
+        # Reconvertimos el nombre
+        converted_name = limpiar_url(categoria.replace("/", "_"))
         has_file = file.name.startswith(converted_name)
 
         if has_file:
             break
 
     assert has_file, f"No se encontró una archivo asociado a la categoría {categoria}"
+
+@pytest.mark.parametrize("file", excel_files)
+def test_nombre_de_archivo_valido(file):
+    # Verificar que el nombre del archivo sigue un formato esperado
+    assert re.fullmatch(r"[A-Za-z0-9._-]+", file.name) is not None, f"El nombre del archivo {file.name} contiene espacios o caractéres inválidos."

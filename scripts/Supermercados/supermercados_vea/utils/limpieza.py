@@ -68,4 +68,12 @@ def filtrar_productos(productos):
     return productos_filtrados
 
 def limpiar_url(url):
-    return re.sub(r"^https://www\.vea\.com\.ar/", "", url)
+    fixed_url = re.sub(r"^https://www\.vea\.com\.ar/", "", url)
+    
+    # Simplifica ciertas urls, deja igual a otras
+    fixed_url = fixed_url.split("?")[0]
+    
+    # Convierte espacios en guiones
+    fixed_url = fixed_url.replace(" ", "-")
+    
+    return fixed_url
