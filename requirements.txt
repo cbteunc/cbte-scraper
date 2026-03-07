@@ -4,3 +4,5 @@ protobuf==6.31.1
 psutil==5.9.8
 Requests==2.32.4
 selenium==4.34.2
+pytest==9.0.2
+pytest-check==2.7.6

@@ -14,6 +14,13 @@
 > ir a la carpeta CBTE con el comando cd. Ejemplo: cd ./Descargas/CBTE
 > `python -m venv venv` -> `./venv/Scripts/activate` -> `pip install -r requirements.txt` -> `python scripts/supermercados/supermercados_vea/main.py`, por ejemplo. Si tu compu es buena, `python scripts/run_all.py`
 
+## Ejecución de tests
+
+Para ejecutar tests, simplemente:
+
+1. Modificar en el archivo `scripts/run_tests.py` la lista de test que se quieren ejecutar
+2. En la terminal, estando en la carpeta raíz del proyecto (CBTE), usar `python3 run_tests.py`
+
 ## Configuración de credenciales
 
 Este proyecto utiliza la API de Google Drive para subir la carpeta data a la carpeta de drive del proyecto. 
