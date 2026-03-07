@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 from pathlib import Path
 import pytest_check as check
-from config import categorias_deseadas
+from ..config import categorias_deseadas
 
 
 # Datos y funciones auxiliares
