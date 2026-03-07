@@ -12,7 +12,7 @@ PATH_DATOS = "data/supermercados/vea"
 
 excel_files = sorted(Path(PATH_DATOS).glob("*.xlsx"))
 
-def columna_vacia(df, nombre_columna):
+def hay_fila_vacia(df, nombre_columna):
     vacias = df[nombre_columna].isna() | df[nombre_columna].astype(str).str.strip().eq("")
 
     return vacias.any()
@@ -23,9 +23,8 @@ def test_columnas_no_vacias(file):
     df = pd.read_excel(file)
 
     for col in ["Producto", "Precio", "Tiene oferta", "Precio x kg/lt"]:
-        vacias = df[col].isna() | df[col].astype(str).str.strip().eq("")
         check.is_false(
-            vacias.any(),
+            hay_fila_vacia(df, col),
             f"La columna '{col}' del archivo '{file}' tiene celdas vacías.",
         )
 
