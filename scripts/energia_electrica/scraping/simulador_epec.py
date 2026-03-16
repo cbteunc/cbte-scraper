@@ -23,7 +23,7 @@ def seleccionar_ng_option(driver, wait, select_id, texto_opcion):
         By.XPATH, f"//ng-dropdown-panel//div[contains(@class,'ng-option') and .//span[normalize-space()='{texto_opcion}']]"
     )))
     opcion.click()
-    logger.debug(f"Opción '{texto_opcion}' seleccionada")
+    # logger.debug(f"Opción '{texto_opcion}' seleccionada")
 
 def agregar(subcategoria, equipo, cant, usoDiario, driver, wait):
     seleccionar_ng_option(driver, wait, "subCcategoriaSeleccionada", subcategoria)
@@ -46,7 +46,7 @@ def aceptar_modal(wait):
     boton_aceptar.click()
 
 def obtener_resumen_pagina(driver, wait):
-    logger.debug("Obteniendo resumen de la página")
+    # logger.debug("Obteniendo resumen de la página")
 
     # Wait for at least one accordion header to appear
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".accordion-header")))
@@ -76,7 +76,7 @@ def obtener_resumen_pagina(driver, wait):
             "kwh":        kwh,
             "equipos":    equipos,
         })
-        logger.debug(f"Categoría: {titulo} | {kwh} | {porcentaje} | equipos: {equipos}")
+        # logger.debug(f"Categoría: {titulo} | {kwh} | {porcentaje} | equipos: {equipos}")
     consumo_estimado = driver.find_element(By.XPATH,
         "//div[contains(@class,'mini-card')]//p[contains(text(),'Consumo estimado')]"
         "/following-sibling::div[@class='valor']//span[@class='numero']"
@@ -87,7 +87,7 @@ def obtener_resumen_pagina(driver, wait):
         "/following-sibling::div[@class='valor']//span[@class='numero']"
     ).text
 
-    logger.debug(f"Consumo estimado: {consumo_estimado} | Importe estimado: {importe_estimado}")
+    # logger.debug(f"Consumo estimado: {consumo_estimado} | Importe estimado: {importe_estimado}")
 
     return {"Consumo": consumo_estimado, "Importe": importe_estimado, "categorias": categorias}
 
@@ -98,7 +98,7 @@ def obtener_datos_simulador():
 
     try:
         driver.get("https://www.epec.com.ar/tramites/simulador-de-consumo")
-        logger.debug("Página cargada")
+        # logger.debug("Página cargada")
         time.sleep(2) 
 
         # HOGAR Y ELECTRODOMESTICOS
@@ -149,7 +149,7 @@ def obtener_datos_simulador():
                 el.classList.add('show');
             });
         """)
-        time.sleep(10)
+        time.sleep(2)
         
         resultado = obtener_resumen_pagina(driver, wait)
 
