@@ -80,8 +80,9 @@ def test_porcentaje_formato(file):
     assert df["porcentaje_categoria"].str.endswith("%").all(), \
         f"Hay porcentajes mal formateados en {file}"
 
-def test_schema():
-    df = pd.read_excel("data/electricidad/consumo_electrico_16-03-2026.xlsx")
+@pytest.mark.parametrize("file", excel_files)
+def test_esquema(file):
+    df = pd.read_excel(file)
 
     expected_columns = [
         "consumo_total (kWh)",
