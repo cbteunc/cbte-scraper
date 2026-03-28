@@ -47,6 +47,10 @@ def obtener_alquileres_y_precios_argenprop(driver, max_reintentos=5, espera_entr
                 precio_limpio = limpiar_precio(precio)
                 barrio_limpio = limpiar_barrio(barrio)
                 
+                if not precio_limpio:
+                    logger.warning(f"Precio del barrio {barrio_limpio} no disponible a través de la página. Omitiéndolo...")
+                    continue
+
                 propiedades.append({
                     "Barrio": barrio_limpio,
                     "Precio": precio_limpio
