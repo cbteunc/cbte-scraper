@@ -6,7 +6,8 @@ SCRIPTS_PATH = "scripts"
 # Lista de directorios que contienen tests que se quieren ejecutar
 TEST_DIRS = [
     "Supermercados/supermercados_vea/tests",
-    "alquileres/alquileres_argenprop/tests"
+    "alquileres/alquileres_argenprop/tests",
+    "colectivo/plataforma10/tests"
 ]
 
 def main():

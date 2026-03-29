@@ -28,7 +28,7 @@ def guardar_en_excel(pasajes, lugar):
 
     os.makedirs(directorio, exist_ok=True) 
 
-    nombre_archivo = os.path.join(directorio, agregar_fecha(f"{procesar_destino(lugar)}.xlsx"))
+    nombre_archivo = os.path.join(directorio, agregar_fecha(f"{procesar_destino(lugar).replace(" ", "_")}.xlsx"))
 
     df = pd.DataFrame(pasajes)
     df.to_excel(nombre_archivo, index=False)
