@@ -11,6 +11,9 @@ def limpiar_precio(texto_precio):
     # Quitar espacios en blanco
     texto_precio = texto_precio.strip()
     
+    # Quitar detalles del descuento
+    texto_precio = texto_precio.split("-")[0]
+    
     # Quitar símbolos comunes (ejemplo $, €, %, espacios)
     for simbolo in ['$', '€', '%', ' ', '/mes', 'c/u']:
         texto_precio = texto_precio.replace(simbolo, '')

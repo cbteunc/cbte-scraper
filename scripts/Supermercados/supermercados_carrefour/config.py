@@ -1,4 +1,4 @@
-# Definir la URL base y las 50 categorías
+# Definir la URL base y las 49 categorías
 base_url = "https://www.carrefour.com.ar/"
 
 categorias_deseadas = [
@@ -34,7 +34,6 @@ categorias_deseadas = [
                         "Limpieza/Limpieza-de-la-ropa/Jabones-para-la-ropa",
                         "Limpieza/Limpieza-de-la-ropa/Suavizantes-para-la-ropa",
                         "Limpieza/Articulos-de-limpieza/Trapos-y-panos",
-                        "Limpieza/Articulos-de-limpieza/Esponjas",
                         "limpieza/limpieza-de-cocina/limpiadores-cremosos",
                         "Limpieza/Papeles-higienicos",
                         "perfumeria-y-farmacia/Proteccion-femenina/Toallitas-femeninas",

@@ -81,7 +81,10 @@ def obtener_productos_y_precios(driver, max_reintentos=5, espera_entre_intentos=
                 except:
                     beneficio_mi_crf = "No"
 
-                precio_kglt_limpio = limpiar_precio(precio_kglt)
+                if precio_kglt != "No disponible": 
+                    precio_kglt_limpio = limpiar_precio(precio_kglt)
+                else:
+                    precio_kglt_limpio = precio_kglt
                 
                 productos_precios.append({
                     "Producto": nuevo_nombre,

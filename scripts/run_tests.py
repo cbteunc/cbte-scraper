@@ -7,6 +7,9 @@ SCRIPTS_PATH = "scripts"
 TEST_DIRS = [
     "Supermercados/supermercados_vea/tests",
     "energia_electrica/tests",
+    "Supermercados/supermercados_carrefour/tests",
+    "alquileres/alquileres_argenprop/tests",
+    "colectivo/plataforma10/tests"
 ]
 
 def main():
