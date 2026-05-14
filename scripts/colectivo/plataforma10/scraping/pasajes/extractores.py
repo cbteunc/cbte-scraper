@@ -2,6 +2,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# --- Texto general de la página ---
+def wait_for_visible_text(driver, timeout=5):
+    # Esperar a que el contenido informativo esté presente
+    WebDriverWait(driver, timeout).until(
+        EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".SearchResultClient_results-data-content__k6rav"))
+    )
+
+
 # --- Cards ---
 def wait_for_card_container(driver, timeout=40):
     # Esperar hasta que las tarjetas estén presentes
@@ -17,6 +25,9 @@ def find_card_list(cards_container):
 
 def find_imagen_empresa(card):
     return card.find_element(By.CSS_SELECTOR, "div.GroupedSearchResultCard_header__7H134 img")
+
+def find_span_nombre_empresa(card):
+    return card.find_element(By.CSS_SELECTOR, ".GroupedSearchResultCard_companyNameFallback__lUPli")
 
 # --- Asientos ---
 def find_seat_type_container(card):

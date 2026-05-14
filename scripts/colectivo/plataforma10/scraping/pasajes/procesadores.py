@@ -3,6 +3,7 @@ from .extractores import (
     find_seat_type_list,
     find_card_list,
     find_imagen_empresa,
+    find_span_nombre_empresa,
     find_seat_type_element,
     find_price_element,
 )
@@ -19,10 +20,21 @@ def get_destino(lugar):
     return procesar_destino(lugar)
 
 def get_nombre_empresa(card):
-    img = find_imagen_empresa(card)
+    try:
+        img = find_imagen_empresa(card)
+        
+        # Nombre de la empresa (alt del logo dentro de su contenedor)
+        return img.get_attribute("alt").strip()
+    except Exception:
+        # Todavía hay chances de que el dato se encuentre en otro lado
+        pass
     
-    # Nombre de la empresa (alt del logo dentro de su contenedor)
-    return img.get_attribute("alt").strip()
+    try:
+        span = find_span_nombre_empresa(card)
+        return span.text.strip()
+    except Exception as e:
+        # En caso de fallar, elevar la excepcion
+        raise e
 
 def get_seat_type(seat_type_button):
     seat_type_element = find_seat_type_element(seat_type_button)
