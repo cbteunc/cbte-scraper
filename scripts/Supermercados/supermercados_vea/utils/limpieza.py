@@ -76,4 +76,7 @@ def limpiar_url(url):
     # Convierte espacios en guiones
     fixed_url = fixed_url.replace(" ", "-")
     
+    # Convierte enies en enes
+    fixed_url = fixed_url.replace('ñ', 'n')
+    
     return fixed_url

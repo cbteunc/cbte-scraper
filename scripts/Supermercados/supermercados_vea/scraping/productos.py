@@ -115,7 +115,12 @@ def scrapear_categoria(driver, url_categoria):
     todos_los_productos = []
 
     for pagina in range(1, total_paginas + 1):
-        url_pagina = f"{url_categoria}?page={pagina}"
+        # Agregamos el indicador de pagina como corresponda
+        if '?' not in url_categoria:
+            url_pagina = f"{url_categoria}?page={pagina}"
+        else:
+            url_pagina = f"{url_categoria}&page={pagina}"
+
         driver.get(url_pagina)
         logger.info(f"Scrapeando página {pagina} de {total_paginas}...")
         time.sleep(3)
