@@ -16,4 +16,5 @@ venv/
 *.xlsx
 *.csv
 *.log
+*.json
 data/
