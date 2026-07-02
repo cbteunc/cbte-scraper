@@ -1,7 +1,7 @@
 import time
 import logging 
 import logging.config
-from .extractores import wait_for_card_container, find_card_container
+from .extractores import wait_for_visible_text, wait_for_card_container, find_card_container
 from .procesadores import *
 
 logging.config.fileConfig('logging_config/logging.conf') 
@@ -12,6 +12,7 @@ def obtener_precios_pasajes_plataforma10(driver, url, lugar):
     driver.get(url)
     
     try:
+        wait_for_visible_text(driver, timeout=2)
         visible_text = driver.execute_script("return document.body.innerText;")
         
         if colectivos_no_disponibles(visible_text):

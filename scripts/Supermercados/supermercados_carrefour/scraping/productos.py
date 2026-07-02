@@ -47,6 +47,13 @@ def obtener_productos_y_precios(driver, max_reintentos=5, espera_entre_intentos=
                     ".vtex-product-summary-2-x-productBrand, .vtex-product-summary-2-x-brandName.t-body")
                 nombre = nombre_elemento.text.strip()
                 nuevo_nombre = limpiar_nombre(nombre)
+
+                botones_inhabilitados = producto.find_elements(By.CSS_SELECTOR, "button:disabled")
+                if botones_inhabilitados:
+                    # Es decir, el boton de compra esta deshabilitado porque no hay stock
+                    logger.info("Ignorando producto sin stock...")
+                    continue
+
                 try:
                     precio_elemento = producto.find_element(By.CSS_SELECTOR, "span.valtech-carrefourar-product-price-0-x-sellingPriceValue")
                     selling_price_raw = precio_elemento.text.replace("\n", "").strip()

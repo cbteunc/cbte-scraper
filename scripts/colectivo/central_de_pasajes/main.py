@@ -28,7 +28,6 @@ def main():
         if input_hidden and input_hidden.has_attr('value'):
             json_str = html.unescape(input_hidden['value'])
             data = json.loads(json_str)
-            print(data)
             dict_info_pasajes = obtener_precios_pasajes(data)
             dict_en_excel(dict_info_pasajes, lugar_formateado)
         else:
