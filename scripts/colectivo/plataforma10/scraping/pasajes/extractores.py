@@ -21,17 +21,17 @@ def find_card_container(driver):
     return driver.find_element(By.CSS_SELECTOR, ".SearchResultClient-module__Avjk-G__service-group")
 
 def find_card_list(cards_container):
-    return cards_container.find_elements(By.CSS_SELECTOR, ".GroupedSearchResultCard-module__jXaVgq__card")
+    return cards_container.find_elements(By.CSS_SELECTOR, ".MulticalidadSearchResultCard-module__nC-N2W__card")
 
 def find_imagen_empresa(card):
-    return card.find_element(By.CSS_SELECTOR, "div.GroupedSearchResultCard-module__jXaVgq__header img")
+    return card.find_element(By.CSS_SELECTOR, "div.MulticalidadSearchResultCard-module__nC-N2W__companyHeader img")
 
 def find_span_nombre_empresa(card):
-    return card.find_element(By.CSS_SELECTOR, ".GroupedSearchResultCard-module__jXaVgq__companyNameFallback")
+    return card.find_element(By.CSS_SELECTOR, ".MulticalidadSearchResultCard-module__nC-N2W__companyName")
 
 # --- Asientos ---
 def find_seat_type_container(card):
-    return card.find_element(By.CSS_SELECTOR, ".GroupedSearchResultCard-module__jXaVgq__qualities")
+    return card.find_element(By.CSS_SELECTOR, ".MulticalidadSearchResultCard-module__nC-N2W__qualitiesContainer")
 
 def find_seat_type_list(card):
     seat_types_container = find_seat_type_container(card)
@@ -40,8 +40,8 @@ def find_seat_type_list(card):
     return seat_types_container.find_elements(By.XPATH, "./*")
 
 def find_seat_type_element(seat_type_button):
-    return seat_type_button.find_element(By.CSS_SELECTOR, ".GroupedSearchResultCard-module__jXaVgq__qualityName")
+    return seat_type_button.find_element(By.CSS_SELECTOR, ".MulticalidadSearchResultCard-module__nC-N2W__qualityName")
 
 # --- Precios ---
 def find_price_element(seat_type_button):
-    return seat_type_button.find_element(By.CSS_SELECTOR, ".GroupedSearchResultCard-module__jXaVgq__qualityAmount")
+    return seat_type_button.find_element(By.CSS_SELECTOR, ".MulticalidadSearchResultCard-module__nC-N2W__priceAmount")

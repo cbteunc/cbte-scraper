@@ -52,6 +52,7 @@ def colectivos_no_disponibles(text):
     mensajes_no_disponible = [
         "Por el momento no contamos con servicios disponibles para esta ruta.",
         "Tramo no disponible",
+        "Ruta sin servicios directos"
     ]
 
     return any(msg in text for msg in mensajes_no_disponible)

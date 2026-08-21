@@ -12,6 +12,9 @@ def limpiar_precio(texto_precio):
     # Quitar puntos de miles y cambiar coma decimal por punto
     texto_precio = texto_precio.replace('.', '').replace(',', '.')
     
+    # Quitar el prefijo "ARS"
+    texto_precio = texto_precio.removeprefix("ARS ")
+    
     try:
         precio_float = float(texto_precio)
     except ValueError:
