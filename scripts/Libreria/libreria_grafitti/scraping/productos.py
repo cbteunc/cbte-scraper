@@ -6,6 +6,8 @@ import time
 import logging 
 import logging.config 
 
+# TODO: Revisar Stock y Ofertas
+
 logging.config.fileConfig('logging_config/logging.conf') 
 logger = logging.getLogger('root')
 
@@ -21,16 +23,25 @@ def obtener_productos_y_precios(driver, max_reintentos=5, espera_entre_intentos=
             time.sleep(1)
 
         try:
+            # Esperamos a que cargue la grilla
             WebDriverWait(driver, 300).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "item-product"))
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, ".js-product-table")
+                )
             )
 
-            contenedores = driver.find_elements(By.CLASS_NAME, "item-product")
-            logger.info(f"{len(contenedores)} productos visibles")
+            # Buscamos los productos dentro de la grilla
+            productos = driver.find_elements(
+                By.CSS_SELECTOR,
+                ".js-product-table .js-product-item-private"
+            )
+
+            logger.info(f"{len(productos)} productos visibles")
+
 
             productos_precios = []
 
-            for container in contenedores:
+            for container in productos:
                 # --- DATA VARIANTS
                 try:
                     label_container = container.find_element(By.CLASS_NAME, "labels")
@@ -47,17 +58,37 @@ def obtener_productos_y_precios(driver, max_reintentos=5, espera_entre_intentos=
                 except Exception as e:
                     stock ="Si"
 
-                # --- DESCRIPCIÓN
-                try:
-                    desc = container.find_element(By.CLASS_NAME, "item-description")
-                    nombre = desc.find_element(By.CLASS_NAME, "item-name").text.strip()
-                except:
-                    nombre = "Nombre no disponible"
+                                    
+                    # --- DESCRIPCIÓN
+                    try:
+                        desc = container.find_element(
+                            By.CSS_SELECTOR,
+                            ".product-item-information"
+                        )
 
-                # --- PRECIO
-                try:
-                    contenedor_precio = container.find_element(By.CLASS_NAME, "item-price-container")
-                    precio_final = contenedor_precio.find_element(By.CLASS_NAME, "item-price").text.strip()
+                        nombre = desc.find_element(
+                            By.CSS_SELECTOR,
+                            ".js-item-name"
+                        ).text.strip()
+
+                    except:
+                        nombre = "Nombre no disponible"
+
+
+                    # --- PRECIO
+                    try:
+                        contenedor_precio = container.find_element(
+                            By.CSS_SELECTOR,
+                            ".product-item-price-container"
+                        )
+
+                        precio_final = contenedor_precio.find_element(
+                            By.CSS_SELECTOR,
+                            ".js-price-display"
+                        ).text.strip()
+
+                    except:
+                        precio_final = "Precio no disponible"                
 
                     try:
                         precio_original_elem = contenedor_precio.find_element(By.CLASS_NAME, "price-compare")

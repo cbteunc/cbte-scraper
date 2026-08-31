@@ -5,13 +5,15 @@ import pandas as pd
 import logging
 import logging.config
 
+# TODO: Tomar el precio original
+
 logging.config.fileConfig('logging_config/logging.conf')
 logger = logging.getLogger('root')
 
 # -------------------------
 # CONFIG
 # -------------------------
-base_search = "https://clasificados.lavoz.com.ar/api/search?page={}&filters=tid%3A6330+tid%3A6334+tid%3A3173+tid_location_should%3A3194+ss_operacion%3AAlquileres+ss_tipo_unidad_dpto%3ADepartamento+ss_cantidad_dormitorios%3A%221+Dormitorio%22"
+base_search = "https://clasificados.lavoz.com.ar/api/search?page={}&filters=tid%3A6330+tid%3A6334+ss_operacion%3AAlquileres+tid%3A3173+tid_location_should%3A3194+ss_cantidad_dormitorios%3A%221+Dormitorio%22"
 base_ad = "https://clasificados.lavoz.com.ar/api/ad/{}"
 
 # -------------------------
@@ -22,15 +24,15 @@ first.raise_for_status()
 first_data = first.json()
 
 last_page = first_data["data"]["results"]["meta"]["last_page"]
-logger.info("Total páginas:", last_page)
+logger.info(f"Total páginas: {last_page}")
 
 # -------------------------
 # 2. OBTENER TODOS LOS IDS
 # -------------------------
 all_ids = []
 
-for page in range(1, last_page):
-    logger.info("Descargando página:", page)
+for page in range(1, last_page + 1):
+    logger.info(f"Descargando página: {page}")
 
     r = requests.get(base_search.format(page))
     r.raise_for_status()
@@ -41,7 +43,7 @@ for page in range(1, last_page):
 
     all_ids.extend(ids)
 
-logger.info("Total IDs:", len(all_ids))
+logger.info(f"Total IDs: {len(all_ids)}" )
 
 # -------------------------
 # 3. DESCARGAR TODOS LOS ADS
@@ -49,7 +51,7 @@ logger.info("Total IDs:", len(all_ids))
 all_ads = []
 
 for ad_id in all_ids:
-    logger.info("Descargando:", ad_id)
+    logger.info(f"Descargando: {ad_id}")
 
     r = requests.get(base_ad.format(ad_id))
     r.raise_for_status()

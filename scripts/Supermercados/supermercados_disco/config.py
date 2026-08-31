@@ -34,8 +34,8 @@ categorias_deseadas = ["almacen/aceites-y-vinagres/aceites-comunes",
                         "carnes/pollos",
                         "limpieza/desodorantes-de-ambiente/desodorantes-y-desinfectantes",
                         "limpieza/accesorios-de-limpieza/esponjas-y-guantes",
-                        "limpieza/accesorios-de-limpieza?initialMap=c,c&initialQuery=limpieza/accesorios-de-limpieza&map=category-1,category-2,tipo-de-producto&query=/limpieza/accesorios-de-limpieza/trapos-de-pisos&searchState",
-                        "limpieza/accesorios-de-limpieza?initialMap=c,c&initialQuery=limpieza/accesorios-de-limpieza&map=category-1,category-2,tipo-de-producto&query=/limpieza/accesorios-de-limpieza/panos-multiusos&searchState",
+                        "paños multiuso?_q=paños multiuso&map=ft",
+                        "trapo de piso?_q=trapo de piso&map=ft",
                         "limpieza/lavandina",
                         "limpieza/cuidado-para-la-ropa/jabon-en-pan",
                         "limpieza/limpieza-de-cocina/detergentes",
@@ -50,7 +50,9 @@ categorias_deseadas = ["almacen/aceites-y-vinagres/aceites-comunes",
                         "perfumeria/cuidado-personal/jabones",
                         "perfumeria/cuidado-personal/desodorantes-de-mujer",
                         "perfumeria/cuidado-personal/productos-para-afeitarse",
-                        "perfumeria/cuidado-personal/proteccion-femenina"]
+                        "perfumeria/cuidado-personal/proteccion-femenina",
+                        "limpieza/accesorios-de-limpieza?initialMap=c,c&initialQuery=limpieza/accesorios-de-limpieza&map=category-1,category-2,tipo-de-producto&query=/limpieza/accesorios-de-limpieza/panos-multiusos&searchState",
+                        "limpieza/accesorios-de-limpieza?initialMap=c,c&initialQuery=limpieza/accesorios-de-limpieza&map=category-1,category-2,tipo-de-producto&query=/limpieza/accesorios-de-limpieza/trapos-de-pisos&searchState"]
 
 # Obtener los links de las categorías
 links_categorias = [f"{base_url}{cat}" for cat in categorias_deseadas]
