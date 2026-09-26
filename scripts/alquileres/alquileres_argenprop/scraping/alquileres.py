@@ -30,9 +30,10 @@ def obtener_alquileres_y_precios_argenprop(driver, max_reintentos=5, espera_entr
 
             for card in cards:
                 try:
-                    barrio = card.find_element(By.CSS_SELECTOR, "p.card__title--primary").text.strip()
+                    barrio = card.find_element(By.CSS_SELECTOR, "p.card__address").text.split(",")[-1].strip()
                 except:
                     barrio = "No disponible"
+                    logger.warning(f"El nombre de cierto barrio no fue encontrado (se guardará solo el precio de ese alquiler).")
 
                 try:
                     precio_texto = card.find_element(By.CSS_SELECTOR, "p.card__price").text.strip()

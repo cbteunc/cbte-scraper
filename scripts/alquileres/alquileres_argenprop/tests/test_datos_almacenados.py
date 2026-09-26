@@ -41,3 +41,10 @@ def test_precio_es_numero(file):
 def test_nombre_de_archivo_valido(file):
     # Verificar que el nombre del archivo sigue un formato esperado
     assert re.fullmatch(r"[A-Za-z0-9._-]+", file.name) is not None, f"El nombre del archivo {file.name} contiene espacios o caractéres inválidos."
+
+@pytest.mark.parametrize("file", excel_files)
+def test_al_menos_un_barrio_disponible(file):
+    df = pd.read_excel(file)
+
+    # Verifica que al menos el nombre de un barrio esta disponible
+    assert (df["Barrio"] != "No disponible").any()
